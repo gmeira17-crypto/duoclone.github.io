@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <title>DuoClone Pro</title>
+</head>
+<body>
+    <div id="app">
+        <!-- Barra de Status Superior -->
+        <header class="top-bar">
+            <div class="stat">🔥 <span id="streak">0</span></div>
+            <div class="stat">💎 <span id="xp">0</span></div>
+            <div class="stat hearts">❤️ <span id="hearts">5</span></div>
+        </header>
+
+        <main id="main-content">
+            <!-- As telas (Home, Lição, etc) serão injetadas aqui pelo script.js -->
+        </main>
+
+        <!-- Navegação Inferior -->
+        <nav class="bottom-nav">
+            <button onclick="router.go('home')" class="nav-btn active">🏠</button>
+            <button onclick="router.go('quests')" class="nav-btn">🎯</button>
+            <button onclick="router.go('profile')" class="nav-btn">👤</button>
+        </nav>
+    </div>
+
+    <!-- Overlay de Lição -->
+    <div id="lesson-overlay" class="hidden">
+        <div class="lesson-header">
+            <button onclick="lesson.exit()">✕</button>
+            <div class="progress-container">
+                <div id="lesson-progress-fill"></div>
+            </div>
+            <div class="lesson-hearts">❤️ <span id="current-hearts">5</span></div>
+        </div>
+        <div id="lesson-body"></div>
+        <div id="feedback-panel" class="hidden">
+            <h2 id="feedback-title"></h2>
+            <p id="feedback-msg"></p>
+            <button id="next-btn">CONTINUAR</button>
+        </div>
+        <footer id="lesson-footer">
+            <button id="verify-btn" onclick="lesson.verify()">VERIFICAR</button>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Registrar Service Worker para funcionamento Offline
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
+</body>
+</html>
